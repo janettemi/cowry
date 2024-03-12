@@ -1,48 +1,58 @@
 import * as React from "react";
 import {
-  createBrowserRouter,
-  RouterProvider,
+ Routes,
+  Route
 } from "react-router-dom";
-import { SignIn } from "./landing-Pages/sign-in/SignIn";
-import { PasswordReset } from "./landing-Pages/password-reset/PasswordReset";
-import { EmailCheck } from "./landing-Pages/emailcheck/EmailCheck";
-import { NewPassword } from "./landing-Pages/newpassword/NewPassword";
-import { Dashboard } from "./app/dashboard/Dashboard";
-import { ActivityLog } from "./app/activitylog/ActivityLog";
-import { Settings } from "./app/settings/Settings";
-import { Businesses } from "./app/businesses/Businesses";
-import { Transations } from "./app/transation/Transations";
-import { TransationDetails } from "./app/transation/transationdetails/TransationDetails";
-import { BusinessDetails } from "./app/businesses/businessdetails/BusinessDetails";
-import { AppRouter } from "./component/approutes/AppRouter";
-import { TeamMate } from "./app/administraction/component/teammates";
-import { Role } from "./app/administraction/component/role";
-import { ProfileInformation } from "./app/settings/profileinformation/ProfileInformation";
-import { ChangePassWord } from "./app/settings/changepassword/ChangePassWord";
 
-const router = createBrowserRouter([
-  { path: '/', element: <Dashboard /> },
-  { path: '/ActivityLog', element: <ActivityLog /> },
-  { path: '/Transactions', element: <Transations /> },
-  { path: '/Settings', element: <Settings /> },
-  { path: '/Businesses', element: <Businesses /> },
-  { path: '/Administration/team-mate', element: <TeamMate /> },
-  { path: '/Administration/role', element: <Role /> },
-  { path: '/transation/TransationDetail', element: <TransationDetails /> },
-  { path: '/business/businessDetail', element: <BusinessDetails /> },
-  { path: '/SignIn', element: <SignIn /> },
-  { path: '/auth/forgot-password', element: <PasswordReset /> },
-  { path: '/emailcheck', element: <EmailCheck /> },
-  { path: '/NewPassword', element: <NewPassword /> },
-  { path: '/AppRouter', element: <AppRouter /> },
-  {path:'/setting/profileinformation',element:<ProfileInformation />},
-  {path:'/setting/ChangePassword',element:<ChangePassWord />}
-]);
+
+import { Logout } from "pages/Logout";
+import Layout from 'component/Layout/Layout'
+import { LayoutLoginDetails } from 'component/Layout/LayoutLoginDetails'
+import { Dashboard } from "pages/Dashboard";
+import { Settings } from "pages/Setting";
+import { ActivityLog } from "./pages/Activity";
+import { SettingProfileInfoForm } from "pages/Setting/compoents/SettingProfileInfoForm";
+import { SettingChangePasswordForm } from "pages/Setting/compoents/SettingChangePasswordForm";
+import { Transations } from "pages/Transation";
+import { TransationDetails } from "pages/Transation/TransationDetails";
+import { Businesse } from "pages/Businesses";
+import { BusinessTransaction } from "pages/Businesses/BusinessTransactions/BusinessTransactions";
+import { Role } from "pages/Admintraction/Role";
+import { TeamMate } from "pages/Admintraction/TeamMate";
+import { EmailOTPForm } from "pages/EmailOTPForm/EmailOTPForm";
+import { SignInComponent } from "pages/SigInComponent/SigInComponent";
+import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
+import { PasswordNewPage } from "pages/PasswordNewPage/PasswordNewPage";
 
 
  const  App= ()=> {
+
   return (
-    <RouterProvider router={router} />
+    <Routes>
+    <Route  element={<Layout />}>
+    <Route path="/" element={<Dashboard />} />,
+    <Route path='/ActivityLog' element= { <ActivityLog />} />,
+    <Route path='/Transactions' element= { <Transations/>} />,
+    <Route path='/Settings' element= { <Settings />} />,
+    <Route path='/Businesses' element= { <Businesse />} />,
+    <Route path='/Administration/team-mate' element= { <TeamMate />} />,
+    <Route path='/Administration/role' element= { <Role />} />,
+    <Route path='/transation/TransationDetail' element= { <TransationDetails />} />,
+    <Route path='/business/businessDetail' element= {  <BusinessTransaction />} />,
+    <Route path='/setting/profileinformation' element= { <SettingProfileInfoForm />} />,
+    <Route path='/setting/ChangePassword' element= {<SettingChangePasswordForm />} />,
+    <Route path='/logout' element= {<Logout />} />,
+    </Route>
+
+
+
+    <Route element={<LayoutLoginDetails />}>
+    <Route path='/SignInPage' element= {  <SignInComponent />} />,
+    <Route path='/CheckOTP' element= {< EmailOTPForm />} />,
+    <Route path='/PasswordRest' element= {<PasswordChangePage /> } />,
+    <Route path='/NewPassword' element= {<PasswordNewPage /> } />,
+    </Route>
+    </Routes>
   )
 };
 export default App;

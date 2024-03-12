@@ -1,7 +1,7 @@
-import {  AppBar as MuiAppBar,  Toolbar ,Typography as MuiTypography } from "@mui/material";
+import {  AppBar as MuiAppBar,  Toolbar ,Typography as MuiTypography, Box, Divider, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { TextSvgIcon } from "../../assest/icons/CustomSvgIcon";
-import { SelectAppSvgIcon } from "../../assest/icons/CustomSvgIcon";
+import { TextSvgIcon } from "../../Assets/Icons/Icons";
+import { SelectAppSvgIcon } from "../../Assets/Icons/Icons";
 
 
 const drawerWidth = 240;
@@ -27,24 +27,24 @@ const Typography = styled(MuiTypography)(() => ({
 export default function AppHeader() {
 
   return (
-    <div>
+    <Stack spacing={2}>
         <AppBar
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { sm: `calc(100% - ${drawerWidth}px)`},
           ml: { sm: `${drawerWidth}px` },
         }}
-      >
+      > 
         <Toolbar>
-         <div style={{display:"flex", marginLeft:"900px" }}>
+         <Box sx={{display:"flex", marginLeft:"900px" }}>
          <TextSvgIcon />
           <Typography variant="h6" noWrap component="div">
             Admin Name
           </Typography>
           <SelectAppSvgIcon />
-         </div>
-           
+         </Box>
         </Toolbar>
+        <Divider sx={{marginTop:"6px" ,border: "1px solid #F9FAFA"}} />
       </AppBar>
-    </div>
+    </Stack>
   )
 }
