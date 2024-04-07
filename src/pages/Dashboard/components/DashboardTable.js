@@ -12,22 +12,22 @@ import Checkbox from '@mui/material/Checkbox';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Typography } from '@mui/material';
 
-function createData(Businessname, totalamount, transtionid, dateandtime, moreicon) {
+function createData(Businessname, totalamount, transtionid, dateandtime) {
   return {
     Businessname,
     totalamount,
     transtionid,
     dateandtime,
-    moreicon
+    moreicon: <MoreHorizIcon />,
   };
 }
 
 const rows = [
-  createData('Lamata PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM", <MoreHorizIcon />),
-  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM", <MoreHorizIcon />),
-  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM", <MoreHorizIcon />),
-  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM", <MoreHorizIcon />),
-  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM", <MoreHorizIcon />)
+  createData('Lamata PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM"),
+  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM"),
+  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM"),
+  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM"),
+  createData('Dangote PLC.', "₦4,000,000.00", "#199-238-2953", "18/10/19 12:04 PM"),
 ];
 
 const headCells = [

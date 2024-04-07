@@ -2,7 +2,7 @@ import { Button, Stack, Typography, Box } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 // import { useState } from 'react';
 
-export const Logout = () => {
+export const Login = () => {
 
   //   const [open, setOpen] = useState(false);
 

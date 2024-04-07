@@ -5,14 +5,12 @@ import {
 } from "react-router-dom";
 
 
-import { Logout } from "pages/Logout";
+
 import Layout from 'component/Layout/Layout'
 import { LayoutLoginDetails } from 'component/Layout/LayoutLoginDetails'
 import { Dashboard } from "pages/Dashboard";
 import { Settings } from "pages/Setting";
-import { ActivityLog } from "./pages/Activity";
-import { SettingProfileInfoForm } from "pages/Setting/compoents/SettingProfileInfoForm";
-import { SettingChangePasswordForm } from "pages/Setting/compoents/SettingChangePasswordForm";
+import { ActivityLog } from "pages/Activity";
 import { Transations } from "pages/Transation";
 import { TransationDetails } from "pages/Transation/TransationDetails";
 import { Businesse } from "pages/Businesses";
@@ -20,7 +18,7 @@ import { BusinessTransaction } from "pages/Businesses/BusinessTransactions/Busin
 import { Role } from "pages/Admintraction/Role";
 import { TeamMate } from "pages/Admintraction/TeamMate";
 import { EmailOTPForm } from "pages/EmailOTPForm/EmailOTPForm";
-import { SignInComponent } from "pages/SigInComponent/SigInComponent";
+import { SignIn } from "pages/SigIn/SigIn";
 import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
 import { PasswordNewPage } from "pages/PasswordNewPage/PasswordNewPage";
 
@@ -29,29 +27,36 @@ import { PasswordNewPage } from "pages/PasswordNewPage/PasswordNewPage";
 
   return (
     <Routes>
-    <Route  element={<Layout />}>
-    <Route path="/" element={<Dashboard />} />,
-    <Route path='/ActivityLog' element= { <ActivityLog />} />,
-    <Route path='/Transactions' element= { <Transations/>} />,
-    <Route path='/Settings' element= { <Settings />} />,
-    <Route path='/Businesses' element= { <Businesse />} />,
-    <Route path='/Administration/team-mate' element= { <TeamMate />} />,
-    <Route path='/Administration/role' element= { <Role />} />,
-    <Route path='/transation/TransationDetail' element= { <TransationDetails />} />,
-    <Route path='/business/businessDetail' element= {  <BusinessTransaction />} />,
-    <Route path='/setting/profileinformation' element= { <SettingProfileInfoForm />} />,
-    <Route path='/setting/ChangePassword' element= {<SettingChangePasswordForm />} />,
-    <Route path='/logout' element= {<Logout />} />,
-    </Route>
+
+      <Route  element={<Layout />}>
+        <Route path="/dashboard" element={<Dashboard />} />,
+        <Route path='/activity-log' element= { <ActivityLog />} />,
+        <Route path="/transactions">
+          <Route index element= { <Transations/>} />,
+          <Route path=":id" element= { <TransationDetails />} />,
+
+        </Route>
+        <Route path="/businesses">
+          <Route index element= { <Businesse />} />,
+          <Route path=':id' element= {<BusinessTransaction />} />,
+        </Route>
+
+        <Route path="/administration">
+          <Route path='team-mate' element= { <TeamMate />} />,
+          <Route path='role' element= { <Role />} />,
+        </Route>
+        
+        <Route path='/settings' element= { <Settings />} />,
+      </Route>
 
 
+      <Route element={<LayoutLoginDetails />}>
+        <Route path='/login' element= {  <SignIn />} />,
+        <Route path='/confirm-otp' element= {< EmailOTPForm />} />,
+        <Route path='/password-reset' element= {<PasswordChangePage /> } />,
+        <Route path='/new-password' element= {<PasswordNewPage /> } />,
+      </Route>
 
-    <Route element={<LayoutLoginDetails />}>
-    <Route path='/SignInPage' element= {  <SignInComponent />} />,
-    <Route path='/CheckOTP' element= {< EmailOTPForm />} />,
-    <Route path='/PasswordRest' element= {<PasswordChangePage /> } />,
-    <Route path='/NewPassword' element= {<PasswordNewPage /> } />,
-    </Route>
     </Routes>
   )
 };

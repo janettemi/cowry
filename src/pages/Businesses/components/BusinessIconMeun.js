@@ -1,10 +1,8 @@
-
   import React, { useState } from 'react';
   import Menu from '@mui/material/Menu';
   import MuiMenuItem from '@mui/material/MenuItem';
   import { useNavigate } from 'react-router-dom';
   import { IconButton,styled } from '@mui/material';
-
 
   import { DetalisSvgIcon } from 'Assets/Icons/Icons'
   import { BusinessApiForm } from './BusinesseFormApi';
@@ -33,13 +31,14 @@
     };
   
     const handleViewSelect = () => {
-      navigate('/business/businessDetail');
+      navigate('Detail');
       
       handleClose();
     };
   
     const handleOpen = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
   
     return (
       <>
@@ -54,8 +53,8 @@
           <MenuItem onClick={() => handleViewSelect('')}>View more details</MenuItem>
           <MenuItem onClick={handleOpen} >Generate Api key</MenuItem>
         </Menu> 
-        <BasicModal open={isModalOpen} handleClose={closeModal} >
-          <BusinessApiForm />
+        <BasicModal open={isModalOpen} handleClose={closeModal}  >
+          <BusinessApiForm  handleClose={closeModal}  setIsModalOpen={setIsModalOpen}/>
         </BasicModal>
       </>
     );

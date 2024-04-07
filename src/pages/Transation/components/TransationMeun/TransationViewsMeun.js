@@ -31,7 +31,7 @@ export const TranstionViewsMeun = (params) => {
   };
 
   const handleDateSelect = () => {
-    navigate('/transation/TransationDetail');
+    navigate('details');
     
     handleClose();
   };
@@ -42,7 +42,7 @@ export const TranstionViewsMeun = (params) => {
     <>
      <IconButton onClick={handleClick}>
       <DetalisSvgIcon />
-        </IconButton>
+    </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import { Button, DialogContent, DialogTitle, FormLabel as MuiFormLable, styled } from '@mui/material';
+import { Button, ButtonBase, DialogContent, DialogTitle, FormLabel as MuiFormLable, styled } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export const TeamMateButtonForm = () => {
+  const navigate = useNavigate();
+
  const FormLabel = styled(MuiFormLable)(()=>({
         color: "#1A1C1F",
         fontFamily: "BR Firma",
@@ -13,7 +16,7 @@ export const TeamMateButtonForm = () => {
         lineHeight: "20px" ,
         letterSpacing:" -0.12px"
  }))
-
+  
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [assignTo, setAssignTo] = useState('');
@@ -56,10 +59,24 @@ export const TeamMateButtonForm = () => {
         size='small'
       />
     </div>
-    <div  style={{
-        marginTop:"20px"
-    }}>
-    <FormLabel>Role</FormLabel>
+
+    <div  style={{ marginTop:"20px"}}>
+      <div style={{display:'flex', justifyContent:'space-between'}}> 
+      <FormLabel>Role</FormLabel>
+      <div>
+      <ButtonBase onClick={() => navigate("/administration/role", {
+        state:{
+          createRole:true
+        },
+      })}
+      disableRipple
+      variant="h5"
+      sx={{textDecoration:'underLine',color:'#2D75B6'}}
+      >
+      Create new role
+      </ButtonBase>
+      </div>
+     </div>
       <TextField
         fullWidth
         placeholder='select role'
@@ -74,6 +91,7 @@ export const TeamMateButtonForm = () => {
           </MenuItem>
         ))}
       </TextField>
+     
     </div>
     
     <div  style={{

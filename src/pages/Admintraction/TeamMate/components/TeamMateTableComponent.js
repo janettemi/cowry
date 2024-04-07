@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 
 import { TeamMateMeun } from './TeamMateMeun';
+import { Typography } from '@mui/material';
 
 
 export const TeamMateTableComponent = () => {
@@ -81,7 +82,7 @@ return (
         <TableRow >
           {columns.map((column) => (
             <TableCell key={column.id}>
-              {column.label}
+            <Typography variant='h3'> {column.label}</Typography> 
             </TableCell>
           ))}
         </TableRow>

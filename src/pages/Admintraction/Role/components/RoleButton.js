@@ -1,19 +1,23 @@
 import { Button as MuiButton, Typography } from "@mui/material"
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { useNavigate,useLocation } from "react-router-dom";
 
 import BasicModal from 'component/Modal/Modal'
 import { RoleButtonForm } from "./RoleButtonForm";
 
 export const RoleButton = () => {
-  useEffect(() => {
-    // You can put any initialization logic here
-  }, []);
-
+  const location = useLocation();
   const [createCusmoerRoles, setCustomerCreateRoles] = useState(''); // State to store the API key
    const handleOpen = () => setCustomerCreateRoles(true);
    const closeModal = () => setCustomerCreateRoles(false);
+   const navigate = useNavigate();
+   console.log({location,crate:location.state?.createRole})
+   useEffect(() => {
+   if(location.state?.createRole){
+    navigate(location.path, {replace: true})
+   }
+  }, []);
    
     const Button = styled(MuiButton)(()=>({
         display:" flex",

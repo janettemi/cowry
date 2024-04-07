@@ -9,30 +9,32 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(
+ description,
+ amount,
+ dateandtime,
+  status,
+) {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      {
-        date: '2020-01-05',
-        customerId: '11091700',
-        amount: 3,
-      },
-      {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
-        amount: 1,
-      },
-    ],
+description,
+amount,
+dateandtime,
+ status,
+history: [
+  {
+    date: '2020-01-05',
+    customerId: '11091700',
+    amount: 3,
+  },
+  {
+    date: '2020-01-02',
+    customerId: 'Anonymous',
+    amount: 1,
+  },
+],
   };
 }
 
@@ -40,15 +42,23 @@ function Row({ row }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell component="th" scope="row">
-          {row.name}
+        <TableCell  variant="h6" component="th" scope="row">
+          {row.description}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+
+        <TableCell align="left">
+          <Typography  variant="h6">{row.amount}</Typography>
+          </TableCell>
+
+        <TableCell align="left">
+          <Typography  variant="h6">{row.dateandtime}</Typography>
+          </TableCell>
+
+        <TableCell align="left">
+          <Typography  variant="h6">{row.status}</Typography>
+          </TableCell>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -59,39 +69,52 @@ function Row({ row }) {
           </IconButton>
         </TableCell>
       </TableRow>
+      <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableBody>
+                  {row.history.map((historyRow) => (
+                    <TableRow key={historyRow.date}>
+                      <Typography component="th" scope="row">
+                        {historyRow.date}
+                      </Typography>
+                      <Typography>{historyRow.customerId}</Typography>
+                      <Typography align="right">{historyRow.amount}</Typography>
+                      <Typography align="right">
+                        {Math.round(historyRow.amount * row.price * 100) / 100}
+                      </Typography>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </Box>
           </Collapse>
         </TableCell>
-    </React.Fragment>
+      </TableRow>
+    </>
   );
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+  createData('January payments and settlements fromtransactions within Lagos', '₦4,000,000.00','18/10/19 12:04 PM','Successful'),
+  createData('January payments and settlements...', '₦4,000,000.00','18/10/19 12:04 PM','Successful'),
+  createData('January payments and settlements...', '₦4,000,000.00','18/10/19 12:04 PM','Successful'),
+  createData('January payments and settlements...', '₦4,000,000.00','18/10/19 12:04 PM','Successful'),
 ];
 
-export default function TransactionDetailTable () {
+export default function TransactionDetailTable() {
   return (
     <TableContainer >
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
+            <TableCell><Typography variant='h3'>DESCRIPTION</Typography></TableCell>
+            <TableCell align="right"><Typography variant='h3'>AMOUNT</Typography></TableCell>
+            <TableCell align="right" ><Typography variant='h3'>DATE & TIME</Typography></TableCell>
+            <TableCell align="right"><Typography variant='h3'>STATUS</Typography></TableCell>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Link, Stack, IconButton, InputAdornment } from '@mui/material';
 
-export function SignInComponent() {
+export function SignIn() {
 
   const [showPassword, setShowPassword] = useState(false);
 
