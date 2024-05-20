@@ -8,26 +8,30 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 
 
+
 import BasicModal from 'component/Modal/Modal';
 import { Login } from "pages/Login";
 
-const ListItem = styled(MuiListItem)(() => ({
+const ListItem = styled(MuiListItem)(({ theme }) => ({
   width: "215px",
   height: "48px",
-  '& .MuiTypography-root, & .MuiSvgIcon-root': {
-    
-  }
+  backgroundColor: "transparent", // Override default background color
+  '&:hover': {
+    backgroundColor: "transparent", // Override hover background color
+  },
 }));
+
 
 const ListItemButton = styled(MuiListItemButton)(({ isActive }) => ({
   width: "215px",
   height: "45px",
   backgroundColor: isActive ? "#2D75B6 !important" : "initial",
   '& .MuiTypography-root, & .MuiSvgIcon-root': {
-    color: isActive ? "#FFFFFF" : "inherit", 
-    borderRadius:"3px soild #ffff",
+    color: isActive ? "#FFFFFF" : "inherit",
+    borderRadius: "3px solid #ffff",
   },
 }));
+
 
 const ListItemIcon = styled(MuiListItemIcon)(() => ({
   display: "flex",
@@ -42,7 +46,6 @@ const ListItemIcon = styled(MuiListItemIcon)(() => ({
 ));
 
 export const SideBarList = () => {
-
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const closeModal = () => setOpen(false);
@@ -92,30 +95,27 @@ export const SideBarList = () => {
                </ListItemButton>
              </ListItem>
 
-             <ListItem    onClick={toggleAdminMenu}   >
-               <ListItemButton isActive={activeItem === "/administration"} > 
-                <ListItemIcon >
-                  <AdminSvgIcon  />
-                 </ListItemIcon >
-                 <Typography variant="h6">Administration</Typography>
-                 {adminOpen ? <ExpandLess /> : <ExpandMore />}
-               </ListItemButton>
-             </ListItem>
-
-             <Collapse in={adminOpen} timeout="auto" unmountOnExit >
-               <div style={{display:"flex", paddingLeft:"55px"}}>
-
-               <ListItem   onClick={() => handleItemClick("/administration/team-mate")} isActive={activeItem === "team-mate"}>
-               <Typography variant="h6">Team Mates</Typography>
+              <ListItem onClick={toggleAdminMenu} sx={{ backgroundColor: activeItem === "/administration" ? '#2D75B6' : 'inherit' }}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AdminSvgIcon />
+                  </ListItemIcon>
+                  <Typography variant="h6">Administration</Typography>
+                  {adminOpen ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
               </ListItem>
-               </div>
-            
-                 <ListItem  onClick={() => handleItemClick("administration/role")} isActive={activeItem === "role"} 
-                sx={{display:"flex",paddingLeft:"65px"}} >
-                <Typography variant="h6">Role and Previlleges</Typography>
-              </ListItem>
-           
-            </Collapse>
+
+              <Collapse in={adminOpen} timeout="auto" unmountOnExit>
+                <div style={{ display: "flex", paddingLeft: "64px" }}>
+                  <ListItem onClick={() => handleItemClick("/administration/team-mate")} sx={{ color: activeItem === "/administration/team-mate" ? '#2D75B6' : 'inherit', cursor: 'pointer' }}>
+                    <Typography variant="h6">Team Mates</Typography>
+                  </ListItem>
+                </div>
+                <ListItem onClick={() => handleItemClick("administration/role")} sx={{ display: "flex", paddingLeft: "76px", color: activeItem === "administration/role" ? '#2D75B6' : 'inherit', cursor: 'pointer' }}>
+                  <Typography variant="h6">Role and Previlleges</Typography>
+                </ListItem>
+              </Collapse>
+
             
             <ListItem  >
               <ListItemButton  onClick={() => handleItemClick("/activity-log")} isActive={activeItem === "/activity-log"}>

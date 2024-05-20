@@ -6,7 +6,7 @@ import { SearchComponent } from "component/SearchComponent";
 import  BusinessesTableComponent from "./components/BusinesseTableComp";
 import { BusinesseButton } from "./components/BusinessButton";
 
-const drawerWidth= 35;
+const drawerWidth= 34;
 
 export const Businesse = () => {
 

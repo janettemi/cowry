@@ -1,20 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import theme from './theme'
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//import { AuthProvider } from 'Auth';
 
-root.render(
-    <React.StrictMode>
-        <BrowserRouter >
-        <ThemeProvider theme={theme}>
-           <App />
-        </ThemeProvider>
-        </BrowserRouter>
-    </React.StrictMode> 
+const queryClient = new QueryClient()
+
+ReactDOM.render(
+    
+  <React.StrictMode>
+     <QueryClientProvider client={queryClient}>
+     <BrowserRouter>
+      <ThemeProvider theme={theme}>
+      <App />
+      </ThemeProvider>
+    </BrowserRouter>
+    </QueryClientProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

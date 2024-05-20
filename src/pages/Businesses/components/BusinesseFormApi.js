@@ -53,13 +53,13 @@ export const BusinessApiForm= ({ handleClose, setIsModalOpen }) => {
             fullWidth
             onChange={(e) => setApiKey(e.target.value)}
           />
-          <div style={{ display: "flex", justifyContent: "end" }}>
+          <Link style={{ display: "flex", justifyContent: "end", textDecoration:'none' }}>
             <Tooltip title="Reset API Key">
               <div onClick={handleResetApiKey} style={{ cursor: 'pointer' }}>
                 Reset API Key
               </div>
             </Tooltip>
-          </div>
+          </Link>
           <BasicModal open={openRestApiForm} handleClose={() => setOpenRestApiForm(false)}>
             <BusinessApiRestForm />
           </BasicModal>

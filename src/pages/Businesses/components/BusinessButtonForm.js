@@ -117,10 +117,11 @@ export const BusinessButtonForm = ({ handleClose, open }) => {
                   placeholder='jerry hoilday'
                   fullWidth
                   size='small'
+                  required
                 />
-                {errors.contactEmail && touched.contactEmail && (
+                {/* {errors.contactEmail && touched.contactEmail && (
                   <Typography color="error" variant='h3'>{errors.contactEmail}</Typography>
-                )}
+                )} */}
                  </Box>
               </Box>
               <Box sx={{height: "65px"}}>

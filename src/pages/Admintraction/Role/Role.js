@@ -5,7 +5,7 @@ import { RoleButton } from "./components/RoleButton";
 import { RoleCustomerCard } from "./components/RoleCustomerCard";
 import { SearchComponent } from "component/SearchComponent";
  
-  const drawerWidth = 33;
+  const drawerWidth = 34;
 
 export const Role =() => {
   return (
@@ -13,13 +13,13 @@ export const Role =() => {
     <Stack spacing={2} sx={{flexGrow:1, marginLeft:drawerWidth }}>
             <Toolbar />
 
-        <Box sx={{display:"flex",justifyContent:"space-between"}}>
+        <Stack  direction={"row"} spacing={50} >
           <Box sx={{display:"flex"}}>
           <Typography variant="h5">Role and permission</Typography>
           <SearchComponent/>
           </Box>
          <RoleButton />
-         </Box>
+         </Stack>
          <RoleCustomerCard />
       </Stack>
     </>

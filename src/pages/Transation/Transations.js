@@ -28,7 +28,7 @@ export const Transations = () => {
                     <Stack spacing={2}>
                         <TransactionTableComponent />
                     </Stack>
-        </Stack>
+          </Stack>
       
     </>   
     )
